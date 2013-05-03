@@ -1,6 +1,6 @@
-# Cinch::Magic
+# Cinch::Plugins::Magic
 
-TODO: Write a gem description
+Just a simple plugin that looks up card info.
 
 ## Installation
 
@@ -18,7 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Just add the plugin to your list:
+
+    @bot = Cinch::Bot.new do
+      configure do |c|
+        c.plugins.plugins = [Cinch::Plugins::Magic]
+      end
+    end
+
+Then in channel use .mtg
+
+    .mtg black lotus
 
 ## Contributing
 
