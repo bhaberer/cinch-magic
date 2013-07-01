@@ -1,5 +1,11 @@
 # Cinch::Plugins::Magic
 
+[![Gem Version](https://badge.fury.io/rb/cinch-magic.png)](http://badge.fury.io/rb/cinch-magic)
+[![Dependency Status](https://gemnasium.com/bhaberer/cinch-magic.png)](https://gemnasium.com/bhaberer/cinch-magic)
+[![Build Status](https://travis-ci.org/bhaberer/cinch-magic.png?branch=master)](https://travis-ci.org/bhaberer/cinch-magic)
+[![Coverage Status](https://coveralls.io/repos/bhaberer/cinch-magic/badge.png?branch=master)](https://coveralls.io/r/bhaberer/cinch-magic?branch=master)
+[![Code Climate](https://codeclimate.com/github/bhaberer/cinch-magic.png)](https://codeclimate.com/github/bhaberer/cinch-magic)
+
 Just a simple plugin that looks up card info.
 
 ## Installation
