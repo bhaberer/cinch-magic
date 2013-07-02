@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-require 'cinch-toolbox'
+require 'cinch'
+require 'cinch/toolbox'
 require 'cinch-cooldown'
 
 module Cinch::Plugins
@@ -35,11 +36,11 @@ module Cinch::Plugins
     end
 
     def get_card_info(data)
-      text = data.match(/<p[^>]*>([^<]+)<\/p>/)[1]
+      text = data[/<p[^>]*>([^<]+)<\/p>/, 1]
 
       # Replace Newlines, unicode lines, total mana, and large spaces.
       text = text.gsub(/\n/, '')
-      text = text.gsub(/—/, '·')
+      text = text.gsub(/\s—/, ', ')
       text = text.gsub(/\s\(\d*\)/, '')
       text = text.gsub(/\s{2,}/, ' ')
 
@@ -52,7 +53,7 @@ module Cinch::Plugins
     end
 
     def get_card_name(data)
-      return data.match(/<a href=[^>]*>([^<]+)<\/a>/)[1]
+      return data[/<a href=[^>]*>([^<]+)<\/a>/, 1]
     rescue
       debug "Error finding this card's name"
     end
@@ -70,7 +71,6 @@ module Cinch::Plugins
     end
 
     def get_card_data(term)
-      debug "#{term}" if term.nil?
       # URI Encode the term and build the URL
       term = URI.escape("!#{term}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       url = "http://magiccards.info/query?q=#{term}"
@@ -80,12 +80,11 @@ module Cinch::Plugins
 
       # Grab the html block because magiccards.info fucking loves tables
       # and hates helpful ids and classnames
-      begin
-        return Cinch::Toolbox.get_html_element(url, '//table[3]/tr/td[2]', 'xpath').to_html
-      rescue
-        debug "Error looking up card: #{term}"
-        return nil
-      end
+      return Cinch::Toolbox.get_html_element(url, '//table[3]/tr/td[2]', :xpath_full)
+
+    rescue
+      debug "Error looking up card: #{term}"
+      return nil
     end
   end
 end
