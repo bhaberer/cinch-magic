@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'cinch'
 require 'cinch/toolbox'
-require 'cinch-cooldown'
+require 'cinch/cooldown'
 
 module Cinch::Plugins
   class Magic
