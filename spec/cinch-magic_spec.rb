@@ -9,12 +9,12 @@ describe Cinch::Plugins::Magic do
   end
 
   it 'should allow users to lookup cards' do
-    get_replies(make_message(@bot, '!mtg forest')).first.text.
-      should include "[Magic] Forest [Basic Land, Forest] - ({T}: Add {G} to your mana pool.)"
+    msg = get_replies(make_message(@bot, '!mtg forest')).first
+    expect(msg.text).to include('[Magic] Forest [Basic Land, Forest] - ({T}: Add {G} to your mana pool.)')
   end
 
   it 'should return an error when a card is not found' do
-    get_replies(make_message(@bot, '!mtg random string that is probably not a real card')).first.text.
-      should == '[Magic] Card not found, or problem fetching page.'
+    msg = get_replies(make_message(@bot, '!mtg random string that is probably not a real card')).first
+    expect(msg.text).to eq('[Magic] Card not found, or problem fetching page.')
   end
 end
